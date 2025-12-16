@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mark Attendance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Mark Attendance</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="container">
+    <form method="POST">
+        <input name="qr_data" placeholder="user:1-event:2" required>
+        <button type="submit">Mark Present</button>
+    </form>
+
+    {% if message %}
+        <div class="message">{{ message }}</div>
+    {% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

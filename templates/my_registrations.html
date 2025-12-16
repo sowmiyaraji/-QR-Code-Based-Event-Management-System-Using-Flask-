@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Registrations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>My Registrations</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="container">
+    {% for reg in registrations %}
+        <div class="event-card">
+            <p><b>Event ID:</b> {{ reg.event_id }}</p>
+            <p><b>Status:</b> {{ reg.attendance }}</p>
+            <img src="/{{ reg.qr_code }}" class="qr-img"><br><br>
+            <a class="btn" href="/{{ reg.qr_code }}" download>Download QR</a>
+        </div>
+    {% endfor %}
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

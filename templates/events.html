@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Events</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Events</h2>
+    <a href="/dashboard">Dashboard</a>
+</div>
+
+<div class="container">
+    {% for event in events %}
+        <div class="event-card">
+            <h3>{{ event.title }}</h3>
+            <p>{{ event.description }}</p>
+            <p>📅 {{ event.date }} | ⏰ {{ event.time }}</p>
+            <p>📍 {{ event.location }}</p>
+
+            {% if current_user.role == 'user' %}
+                <a class="btn" href="/register_event/{{ event.id }}">Register</a>
+            {% endif %}
+
+            {% if current_user.role == 'admin' %}
+                <a class="btn btn-secondary" href="/event_participants/{{ event.id }}">
+                    👥 Manage Parties
+                </a>
+                <a class="btn" href="/edit_event/{{ event.id }}">
+                    ✏ Edit
+                </a>
+                <a class="btn btn-danger"
+                   href="/delete_event/{{ event.id }}"
+                   onclick="return confirm('Are you sure you want to delete this event?')">
+                   🗑 Delete
+                </a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+
+</body>
+</html>

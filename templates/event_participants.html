@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Event Participants</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Participants – {{ event.title }}</h2>
+    <a href="/events">Back</a>
+</div>
+
+<div class="container">
+    <h3>Registered Parties</h3>
+
+    {% for reg in registrations %}
+        <div class="event-card">
+            <p><b>User ID:</b> {{ reg.user_id }}</p>
+            <p><b>Status:</b> {{ reg.attendance }}</p>
+
+            <a class="btn btn-danger"
+               href="/remove_participant/{{ reg.id }}"
+               onclick="return confirm('Remove this participant?')">
+               ❌ Remove
+            </a>
+        </div>
+    {% endfor %}
+
+    <hr>
+
+    <h3>Add Party (Admin)</h3>
+    <form method="POST" action="/add_participant/{{ event.id }}">
+        <input type="number" name="user_id" placeholder="Enter User ID" required>
+        <button type="submit">➕ Add Participant</button>
+    </form>
+
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>

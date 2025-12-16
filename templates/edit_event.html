@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Event</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Edit Event</h2>
+    <a href="/events">Back</a>
+</div>
+
+<div class="container">
+    <form method="POST">
+        <input name="title" value="{{ event.title }}" required>
+        <textarea name="description" required>{{ event.description }}</textarea>
+        <input type="date" name="date" value="{{ event.date }}" required>
+        <input type="time" name="time" value="{{ event.time }}" required>
+        <input name="location" value="{{ event.location }}" required>
+        <button type="submit">Update Event</button>
+    </form>
+</div>
+
+</body>
+</html>

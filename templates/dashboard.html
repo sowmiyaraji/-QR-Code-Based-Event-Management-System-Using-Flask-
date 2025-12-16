@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="navbar">
+    <h2>Event Management System</h2>
+    <a href="/logout" class="logout">Logout</a>
+</div>
+
+<div class="container">
+    <h2>👋 Welcome {{ current_user.name }}</h2>
+
+    <a class="btn btn-secondary" href="/events">View Events</a><br><br>
+
+    {% if current_user.role == 'admin' %}
+        <a class="btn" href="/create_event">Create Event</a>
+        <a class="btn" href="/mark_attendance">Mark Attendance</a>
+        <a class="btn" href="/attendance_report">Attendance Report</a>
+    {% endif %}
+
+    {% if current_user.role == 'user' %}
+        <a class="btn" href="/my_registrations">My Registrations</a>
+    {% endif %}
+</div>
+
+<script src="{{ url_for('static', filename='main.js') }}"></script>
+</body>
+</html>
